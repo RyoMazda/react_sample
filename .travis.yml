@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run test_image npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "react_sample"
+  env: "ReactSample-env"
+  bucket_name: "elasticbeanstalk-us-west-2-431120073761"
+  bucket_path: "react_sample"
+  on:
+    branch: master
+  access_key_id: $AWS_AKID
+  secret_access_key:
+    secure: "$AWS_SAK"
